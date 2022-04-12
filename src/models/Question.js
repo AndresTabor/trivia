@@ -19,8 +19,8 @@ class Question {
        * @returns {boolean} returns if the option is correct
        */
      validation(option) {
-       console.log(option === this.answer);
-      //return option === this.answer;
+       //console.log(option === this.answer);
+      return option === this.answer;
     }
   
 }

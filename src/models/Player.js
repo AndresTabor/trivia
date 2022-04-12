@@ -1,14 +1,15 @@
 class Player {
-    constructor(accumulated) {
-        this.accumulated = accumulated;
-        this.Attempts = 1;
-
-        
-    }
-    backingOut() {
-            
+    /**
+     * 
+     * @param {number} acumulado total accumulated
+     */
+    constructor( acumulado ) {
+        this.accumulated = acumulado; 
     }
 
+    setAccumulated() {
+        alert( "Acumulaste: " + this.accumulated +  " Puntos");
+    }
 }
 
 export { Player };
