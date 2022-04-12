@@ -25,7 +25,6 @@ class Controler {
      * @param {number} score total accumulated
      */
     backingOut( score ){
-        // const player = new Player();
         this.currentPlayer.setAccumulated( score );
         const newRegister = {
             id: scoreTable.length + 1,
@@ -36,6 +35,23 @@ class Controler {
         document.getElementById("overley").style.display="block";
     }
 
+    /**
+     * 
+     * @param {number} score total accumulated
+     */
+    finishTrivia( score ){
+        this.currentPlayer = new Player( score );
+        this.currentPlayer.setAccumulated( score );
+        const newRegister = {
+            id: scoreTable.length + 1,
+            name: "player" + (scoreTable.length +1),
+            score: this.currentPlayer.accumulated
+        }
+        scoreTable.push(newRegister);
+        document.getElementById("overley").style.display="block";
+    }
+
+     
     gameOver(){
         this.currentPlayer.setAccumulated( 0 );
         const newRegister = {

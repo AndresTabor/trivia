@@ -17,33 +17,37 @@ const Ui = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [level, score])
     
-    const attempt = ( index ) =>{
-        
+    const attempt = ( index ) =>{        
         if( currentQuestion.validation( index ) ) {
+            setLevel( level+1 );
+            setScore( score+100 ); 
             if ( level === 5 ) {
-                alert("Felicidades haz ganado la trivia");               
-                backing( 500 );
-                document.getElementById("overley").style.display="block";
+                alert("Felicidades haz ganado la trivia");
+                console.log(score+100);               
+                finish( score+100 );                    
                 setLevel( 1 );
                 setScore( 0 );
-            }else{
-                console.log("correcto");
-                setLevel( level+1 );
-                setScore( score+100 );
-            } 
-        }else{
+            }                        
+        }
+        else{
             document.getElementById("overley").style.display="block";
             room.gameOver();
             setLevel( 1 );
             setScore( 0 );
             setUpdate( !update );
-        }        
+        }   
+            
     }
 
-    const backing = ( score ) => {
-        room.backingOut( score );
+    const backing = ( points ) => {
+        room.backingOut( points );
         setUpdate( !update );
     }
+
+    const finish = ( score ) => {
+        room.finishTrivia( score );
+    }
+
 
   return (
     <>
