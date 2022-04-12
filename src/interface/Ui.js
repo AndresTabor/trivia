@@ -18,11 +18,19 @@ const Ui = () => {
     }, [level, score])
     
     const attempt = ( index ) =>{
-
-        if( currentQuestion.validation( index ) ) {  
-            console.log("correcto");
-            setLevel( level+1 );
-            setScore( score+100 );
+        
+        if( currentQuestion.validation( index ) ) {
+            if ( level === 5 ) {
+                alert("Felicidades haz ganado la trivia");               
+                backing( 500 );
+                document.getElementById("overley").style.display="block";
+                setLevel( 1 );
+                setScore( 0 );
+            }else{
+                console.log("correcto");
+                setLevel( level+1 );
+                setScore( score+100 );
+            } 
         }else{
             document.getElementById("overley").style.display="block";
             room.gameOver();
@@ -32,7 +40,7 @@ const Ui = () => {
         }        
     }
 
-    const backing = () => {
+    const backing = ( score ) => {
         room.backingOut( score );
         setUpdate( !update );
     }
