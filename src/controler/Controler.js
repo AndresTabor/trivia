@@ -1,4 +1,5 @@
 import { data } from "../data/data";
+import { scoreTable } from "../data/scoreTable";
 import { Player } from "../models/Player";
 import { Question } from "../models/Question";
 
@@ -26,11 +27,23 @@ class Controler {
     backingOut( score ){
         // const player = new Player();
         this.currentPlayer.setAccumulated( score );
+        const newRegister = {
+            id: scoreTable.length + 1,
+            name: "player" + (scoreTable.length +1),
+            score: this.currentPlayer.accumulated
+        }
+        scoreTable.push(newRegister);
+        document.getElementById("overley").style.display="block";
     }
 
     gameOver(){
         this.currentPlayer.setAccumulated( 0 );
-        alert( "Acumulaste: 0 Puntos");
+        const newRegister = {
+            id: scoreTable.length + 1,
+            name: "player" + (scoreTable.length +1),
+            score: this.currentPlayer.accumulated
+        }
+        scoreTable.push(newRegister);
     }
 }
 export { Controler }

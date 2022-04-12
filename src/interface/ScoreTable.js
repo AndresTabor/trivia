@@ -1,39 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { scoreTable } from '../data/scoreTable'
 
-const ScoreTable = () => {
+
+const ScoreTable = ( update ) => {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        console.log("montaje tabla");
+        setData(scoreTable);
+    }, [update])
+    
+    const closeTable = () => {
+        document.getElementById("overley").style.display="none";
+    }
   return (
-    <>
-        <table class="table">
-        <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            </tr>
-        </tbody>
-        </table>
-    </>
+    <div className='overley-container' id='overley'>
+        <div className='table-container'>
+            <button onClick={()=>closeTable()} className='btn-close'>
+                Intentar de nuevo
+            </button>
+            <h2 className='mb-5 table-title'>Tabla de puntuación</h2>
+            <table className="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Player</th>
+                <th scope="col">Score</th>                
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    data.map((player, index) => (
+                        <tr key={index}>
+                        <th scope="row">{index + 1}</th>
+                        <td>{player.name}</td>
+                        <td>{player.score}</td>
+                        </tr>                
+                    ))
+                }
+            </tbody>
+            </table>
+        </div>
+    </div>
   )
 }
 

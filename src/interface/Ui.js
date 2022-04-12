@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Controler } from '../controler/Controler';
+import ScoreTable from './ScoreTable';
 
 
 const Ui = () => {
+    const [update, setUpdate] = useState( false );
     const [level, setLevel] = useState( 1 );
     const [score, setScore] = useState( 0 );
     const [currentQuestion, setcurrentQuestion] = useState( {
@@ -12,18 +14,27 @@ const Ui = () => {
     
     useEffect(() => {
         setcurrentQuestion(room.createRound( level ));      
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [level, score])
     
     const attempt = ( index ) =>{
-        level === 5 ? alert("haz Ganado"): console.log();
 
         if( currentQuestion.validation( index ) ) {  
             console.log("correcto");
             setLevel( level+1 );
             setScore( score+100 );
         }else{
+            document.getElementById("overley").style.display="block";
             room.gameOver();
+            setLevel( 1 );
+            setScore( 0 );
+            setUpdate( !update );
         }        
+    }
+
+    const backing = () => {
+        room.backingOut( score );
+        setUpdate( !update );
     }
 
   return (
@@ -56,11 +67,12 @@ const Ui = () => {
         </div>
         <div>
             <button className='btn-backingOut'
-            onClick={() => room.backingOut( score )}
+            onClick={() => backing( score )}
             >
             Retirarse
             </button>
         </div>
+        <ScoreTable update={update}/>
     </>
   )
 }

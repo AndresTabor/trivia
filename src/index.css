@@ -112,7 +112,43 @@ code {
 }
 
 /*score table*/
-.table-container{
+.overley-container{
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.468);
   position: fixed;
   top: 0;
+  left: 0;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+}
+.table-container{
+  margin: 0 auto;
+  margin-top: 200px;
+  text-align: center;
+  width: 50%;
+  background-color: aliceblue;
+  padding: 50px;
+  border-radius: 20px;
+}
+.table-title{
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Inter', sans-serif;
+  color: rgb(219, 130, 21);
+}
+
+.btn-close{
+  position: relative;
+  padding: 5px 15px;
+  border-radius: 20px;
+  top: -33px;
+  left: 45%;
+  background: rgb(219, 130, 21);
+  border: none;
+  cursor: pointer;
+  font-weight: 300;
+  color: aliceblue;
 }
